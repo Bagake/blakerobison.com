@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blake Robison — Journalist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────── */
+    :root {
+      --orange:       #E8621A;
+      --orange-lt:    #F07B38;
+      --orange-pale:  #FDF0E8;
+      --navy:         #1B2F52;
+      --navy-mid:     #243D6A;
+      --charcoal:     #2E2E2E;
+      --charcoal-mid: #606060;
+      --cream:        #FDFAF6;
+      --cream-dark:   #F0EBE1;
+      --border:       #DDD8CE;
+      --white:        #FFFFFF;
+      --display:      'Playfair Display', Georgia, serif;
+      --body:         'Source Serif 4', Georgia, serif;
+    }
+
+    /* ── RESET ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body);
+      background: var(--cream);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.55s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+    .delay-5 { animation-delay: 0.58s; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      background: var(--navy);
+      border-bottom: 3px solid var(--orange);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .nav-brand-bar {
+      width: 4px;
+      height: 20px;
+      background: var(--orange);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links li a {
+      color: rgba(255,255,255,0.75);
+      font-family: var(--body);
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.18s ease;
+    }
+    .nav-links li a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.1);
+    }
+    .nav-hire {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 7px 16px !important;
+      border-radius: 20px !important;
+      font-weight: 600 !important;
+    }
+    .nav-hire:hover {
+      background: var(--orange-lt) !important;
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 56px 28px 64px;
+    }
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    .hero-text { flex: 1; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(232,98,26,0.15);
+      border: 1px solid rgba(232,98,26,0.3);
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin-bottom: 18px;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange-lt);
+      flex-shrink: 0;
+    }
+    .hero-badge span {
+      font-size: 12px;
+      color: var(--orange-lt);
+      font-family: var(--body);
+      font-weight: 400;
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero-name em {
+      color: var(--orange-lt);
+      font-style: normal;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-bio {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.72);
+      max-width: 420px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-solid {
+      background: var(--orange);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 7px;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.18s ease, transform 0.15s ease;
+    }
+    .btn-solid:hover {
+      background: var(--orange-lt);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      padding: 10px 22px;
+      border-radius: 7px;
+      font-family: var(--body);
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.28);
+      transition: all 0.18s ease;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+    }
+
+    /* Photo column */
+    .hero-photo-col {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-photo {
+      width: 160px;
+      height: 200px;
+      border-radius: 12px;
+      border: 3px solid var(--orange);
+      overflow: hidden;
+      background: var(--navy-mid);
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .hero-socials {
+      display: flex;
+      gap: 8px;
+    }
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s ease;
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+    }
+    .social-icon:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+    .social-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ── PUBLISHED-IN STRIP ──────────────────────────────── */
+    .pub-strip {
+      background: var(--orange);
+      padding: 10px 28px;
+    }
+    .pub-strip-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pub-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .pub-divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,0.4);
+    }
+    .pub-items {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .pub-item {
+      font-size: 13px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .pub-item svg {
+      width: 13px;
+      height: 13px;
+      fill: rgba(255,255,255,0.7);
+    }
+
+    /* ── MAIN GRID ───────────────────────────────────────── */
+    .main-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 44px 28px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 36px;
+    }
+
+    /* section header */
+    .section-eyebrow {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 5px;
+    }
+    .section-heading {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 22px;
+    }
+
+    /* Article list */
+    .article-list { list-style: none; }
+    .article-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+      transition: background 0.15s ease;
+    }
+    .article-item:first-child { padding-top: 0; }
+    .article-item:last-child { border-bottom: none; }
+    .article-num {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--border);
+      min-width: 22px;
+      padding-top: 3px;
+    }
+    .article-meta-cat {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .article-title {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 5px;
+      transition: color 0.15s ease;
+    }
+    .article-item:hover .article-title { color: var(--orange); }
+    .article-date {
+      font-size: 12px;
+      color: var(--charcoal-mid);
+    }
+    .view-all-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 22px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+    .view-all-link:hover { color: var(--orange); }
+    .view-all-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ── SIDEBAR ─────────────────────────────────────────── */
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .sidebar-card-title {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 9px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .sidebar-card-title svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--orange);
+    }
+
+    /* Portfolio items */
+    .portfolio-list { list-style: none; }
+    .portfolio-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .portfolio-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .portfolio-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--navy);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .portfolio-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--orange-lt);
+    }
+    .portfolio-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1.3;
+    }
+    .portfolio-pub {
+      font-size: 11px;
+      color: var(--charcoal-mid);
+    }
+
+    /* Newsletter */
+    .newsletter-desc {
+      font-size: 13px;
+      color: var(--charcoal-mid);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .newsletter-input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 9px 12px;
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--charcoal);
+      background: var(--cream);
+      margin-bottom: 8px;
+      transition: border-color 0.18s;
+    }
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(232,98,26,0.12);
+    }
+    .newsletter-btn {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 7px;
+      padding: 10px;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .newsletter-btn:hover { background: var(--orange); }
+    .newsletter-note {
+      font-size: 11px;
+      color: var(--charcoal-mid);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* About card */
+    .about-strip {
+      background: var(--cream-dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 28px;
+    }
+    .about-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .about-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--orange);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .about-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .about-text h2 {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+    .about-text p {
+      font-size: 14px;
+      color: var(--charcoal-mid);
+      line-height: 1.7;
+      max-width: 500px;
+    }
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--orange);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .about-link:hover { border-bottom-color: var(--orange); }
+    .about-link svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--charcoal);
+      border-top: 3px solid var(--orange);
+      padding: 22px 28px;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.85);
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .footer-bar {
+      width: 3px;
+      height: 16px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--orange-lt); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 820px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-inner {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-bio { max-width: 100%; }
+      .hero-actions { justify-content: center; }
+      .hero-badge { margin: 0 auto 18px; }
+      .nav-links { display: none; }
+      .pub-items { gap: 12px; }
+      .about-inner { flex-direction: column; text-align: center; }
+      .about-text p { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <div class="nav-brand-bar"></div>
+        Blake Robison
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/contact" class="nav-hire">Hire me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge fade-up">
+          <div class="hero-badge-dot"></div>
+          <span>Journalist &middot; Wake Forest University</span>
+        </div>
+        <h1 class="hero-name fade-up delay-1">Blake <em>Robison</em></h1>
+        <p class="hero-subtitle fade-up delay-2">Sports &amp; General Journalism &middot; West Virginia native</p>
+        <p class="hero-bio fade-up delay-3">
+          I tell stories that matter — from the sidelines to the press box to wherever the story takes me. Currently covering sports &amp; campus life at Wake Forest, and building a body of work I'm proud of.
+        </p>
+        <div class="hero-actions fade-up delay-4">
+          <a href="/blog" class="btn-solid">Read my work</a>
+          <a href="/portfolio" class="btn-outline">View portfolio</a>
+          <a href="/contact" class="btn-outline">Contact me</a>
+        </div>
+      </div>
+
+      <div class="hero-photo-col fade-up delay-2">
+        <div class="hero-photo">
+          <!-- Replace with your actual WordPress media URL if this stops working -->
+          <img src="https://blakerobison.com/wp-content/uploads/2025/07/Official-Headshot.jpeg" alt="Blake Robison" />
+        </div>
+        <div class="hero-socials">
+          <!-- Twitter/X -->
+          <a href="#" class="social-icon" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" class="social-icon" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLISHED IN STRIP -->
+  <div class="pub-strip">
+    <div class="pub-strip-inner">
+      <span class="pub-label">Published in</span>
+      <div class="pub-divider"></div>
+      <div class="pub-items">
+        <span class="pub-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z"/></svg>
+          Old Gold &amp; Black
+        </span>
+        <span class="pub-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z"/></svg>
+          blakerobison.com
+        </span>
+        <span class="pub-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14.93V15a1 1 0 00-2 0v1.93A8.001 8.001 0 014.07 13H6a1 1 0 000-2H4.07A8.001 8.001 0 0111 4.07V6a1 1 0 002 0V4.07A8.001 8.001 0 0119.93 11H18a1 1 0 000 2h1.93A8.001 8.001 0 0113 16.93z"/></svg>
+          Sports Broadcasting
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT GRID -->
+  <div class="main-grid">
+
+    <!-- RECENT WRITING -->
+    <main>
+      <p class="section-eyebrow">Latest</p>
+      <h2 class="section-heading">Recent writing</h2>
+
+      <ul class="article-list">
+        <li class="article-item">
+          <span class="article-num">01</span>
+          <div>
+            <p class="article-meta-cat">Sports</p>
+            <a href="/nfl-week-4-recap" class="article-title">NFL Week 4 Recap: The Hierarchy Shifts Once Again</a>
+            <p class="article-date">October 2024 &middot; blakerobison.com</p>
+          </div>
+        </li>
+        <li class="article-item">
+          <span class="article-num">02</span>
+          <div>
+            <p class="article-meta-cat">Sports</p>
+            <a href="/nfl-week-3" class="article-title">NFL Week 3: Minnesota Continues to Wreak Havoc</a>
+            <p class="article-date">September 2024 &middot; blakerobison.com</p>
+          </div>
+        </li>
+        <li class="article-item">
+          <span class="article-num">03</span>
+          <div>
+            <p class="article-meta-cat">College Sports</p>
+            <a href="/wfu-ncstate-preview" class="article-title">Wake Forest vs. NC State Preview — Oct. 5, 2024</a>
+            <p class="article-date">October 2024 &middot; Old Gold &amp; Black</p>
+          </div>
+        </li>
+        <li class="article-item">
+          <span class="article-num">04</span>
+          <div>
+            <p class="article-meta-cat">Sports</p>
+            <a href="/nfl-week-2" class="article-title">NFL Week 2 Recap: Is New Orleans Legit?</a>
+            <p class="article-date">September 2024 &middot; blakerobison.com</p>
+          </div>
+        </li>
+        <li class="article-item">
+          <span class="article-num">05</span>
+          <div>
+            <p class="article-meta-cat">General</p>
+            <a href="#" class="article-title">Your newest post goes here automatically</a>
+            <p class="article-date">Add more posts and they'll appear in order</p>
+          </div>
+        </li>
+      </ul>
+
+      <a href="/blog" class="view-all-link">
+        View all writing
+        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </a>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+
+      <!-- Portfolio highlights -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.06 15.96 0 13.36 0c-1.26 0-2.48.63-3.36 1.67C9.12.63 7.9 0 6.64 0 4.04 0 2 2.06 2 4.64c0 .48.11.92.18 1.36H0v14h20V6zm-9.5-4.28c.44-.7 1.08-1.08 1.86-1.08C13.74 .64 15 1.9 15 3.5v.14L10.5 1.72zM3.64 4.64C3.64 2.9 4.9 1.64 6.64 1.64c.78 0 1.42.38 1.86 1.08L4 4.95v-.31zM1.5 7.5h17v11h-17z"/></svg>
+          Portfolio highlights
+        </div>
+        <ul class="portfolio-list">
+          <li class="portfolio-item">
+            <div class="portfolio-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zm4 18H6V4h7v5h5v11z"/></svg>
+            </div>
+            <div>
+              <p class="portfolio-name">Game previews &amp; recaps</p>
+              <p class="portfolio-pub">Old Gold &amp; Black</p>
+            </div>
+          </li>
+          <li class="portfolio-item">
+            <div class="portfolio-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V6zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-2.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+            </div>
+            <div>
+              <p class="portfolio-name">Broadcast &amp; audio work</p>
+              <p class="portfolio-pub">YouTube · @bagake</p>
+            </div>
+          </li>
+          <li class="portfolio-item">
+            <div class="portfolio-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </div>
+            <div>
+              <p class="portfolio-name">Long-form features</p>
+              <p class="portfolio-pub">blakerobison.com</p>
+            </div>
+          </li>
+        </ul>
+        <a href="/portfolio" class="view-all-link" style="margin-top:14px; font-size:13px;">
+          See full portfolio
+          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Newsletter
+        </div>
+        <p class="newsletter-desc">Get new writing straight to your inbox. No spam — just stories.</p>
+        <input class="newsletter-input" type="email" placeholder="Your email address" />
+        <button class="newsletter-btn">Subscribe</button>
+        <p class="newsletter-note">Unsubscribe anytime.</p>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip">
+    <div class="about-inner">
+      <div class="about-avatar">
+        <img src="https://blakerobison.com/wp-content/uploads/2025/07/Official-Headshot.jpeg" alt="Blake Robison" />
+      </div>
+      <div class="about-text">
+        <h2>A little about me</h2>
+        <p>
+          I'm a journalism student at Wake Forest University originally from Bridgeport, West Virginia. I cover sports, campus life, and stories I find genuinely interesting — and I'm always looking for the next one.
+        </p>
+        <a href="/about" class="about-link">
+          Read my full story
+          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-bar"></div>
+        Blake Robison
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/blog">Blog</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="#">&copy; 2026</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
